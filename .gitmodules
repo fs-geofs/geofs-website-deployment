@@ -1,0 +1,6 @@
+[submodule "geofs-website"]
+	path = geofs-website
+	url = git@github.com:fs-geofs/geofs-website.git
+[submodule "geofs-website-backend"]
+	path = geofs-website-backend
+	url = git@github.com:fs-geofs/geofs-website-backend.git

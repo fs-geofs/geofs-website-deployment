@@ -1,0 +1,24 @@
+services:
+  website:
+    container_name: website
+    build: ./geofs-website
+    environment:
+      BACKEND_URL: website-backend
+      BACKEND_PORT: 8000
+      PROTOKOLL_ENDPOINT: https://giv-geofs.uni-muenster.de/protokolle/
+  website-backend:
+    build: ./geofs-website-backend
+    container_name: website-backend
+    user: "1000"
+    environment:
+      GITHUB_WEBHOOK_SECRET: replace-this-with-real-secret
+      GITHUB_CONTENT_REPO: fs-geofs/geofs-website-content
+    volumes:
+      - ./content:/app/data
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
